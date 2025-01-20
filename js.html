@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+
+        #error,#error1,#error2{
+        
+        color: red;
+        
+        }
+        form{
+
+border-style:  solid ;
+border-color: brown;
+width: 300px;
+padding: 20px;
+
+        }
+
+        #textarea{
+
+
+border-style:solid  ;
+border-color: brown;
+width: 300px;
+padding: 20px;
+background-color: rgb(179, 80, 80);
+
+
+        }
+
+
+        .output-container {
+            margin-top: 20px;
+        }
+        .btn-container {
+            text-align:left; 
+        }
+
+        h2{
+
+margin-top: 0px;
+text-align: center;
+
+        }
+        
+        
+        </style>
+        
+
+
+
+</head>
+<body>
+    
+
+<p id="r"></p>
+<form id="d"> 
+<h4> Enter your name</h4>
+<input type="text " id="mytxt" required> <span id="error">  </span>  <br><br>
+<h3> Pleas select your dietary prefrances !</h3>
+<input type="radio" name="diet" value="Vegan"> vegan</input>
+<input type="radio" name="diet" value="Gluten-Free" checked> Gluten-Free</input>
+<input type="radio" name="diet" value="High protein"> High protein</input>
+<input type="radio" name="diet" value="Low-carb"> Low-carb</input><br>
+<input type="radio" name="diet" value="Hiba"> Hiba</input>
+
+
+
+<span id="error1"></span><br><br>
+<h3> Enter your wight!</h3>
+<input type="number" id="ccc" value="Weight"> <span id="error2"></span><br><br>
+
+</form>
+
+<div class="output-container">
+    <div class="btn-container">
+<input type="button" class="btn btn-outline-danger" onclick="s()" value="Submit">
+    </div>
+
+<textarea id="textarea" rows="25" cols="30"></textarea>
+
+</div>
+<h2 id="date"> </h2>
+<p id="txxt"></p>
+<div id ="demo" onmouseover="hiba"> hiba</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+
+    var date=new Date();
+
+   var d= date.getDate()+"-" + (date.getMonth()+1) +"-" + date.getFullYear() ;
+  var t=  ""+ date.getHours() + ":"+ date.getMinutes() +":"+ date.getSeconds();
+document.getElementById("date").innerHTML=d+ "  " +t;
+
+
+function s(){
+    var x =document.getElementsByName("diet");
+    var name =document.getElementById("mytxt").value.trim();
+    document.getElementById("error").innerHTML = "";
+    document.getElementById("error1").innerHTML = "";
+    document.getElementById("error2").innerHTML = "";
+    document.getElementById("demo").innerHTML="hiba";
+  document.getElementById("textarea").innerHTML=name;
+ var Weight=document.getElementById("ccc").value.trim();
+x.checked;
+ 
+var calories=0;
+var meal="";
+var protine=0;
+
+
+//if(name ==="" || !isNaN(Number(name)) ){
+
+//document.getElementById("error").innerHTML="Please enter a valid name !";
+//return;
+//}
+
+
+var selectedDiet = "";
+
+for(var i=0;i<x.length;i++){
+
+if(x[i].checked){
+
+
+    selectedDiet = x[i].value;
+    
+
+        break;}
+}
+if (!selectedDiet) {
+        
+document.getElementById("error1").innerHTML= "Please select your dietary preference!";
+        return;
+    }
+
+if(!Weight){
+
+    document.getElementById("error2").innerHTML="Please enter your wight  correctly in KG";
+return;
+}
+
+
+
+
+
+if( selectedDiet=="Vegan"){
+    protine=Weight*0.8;
+    calories=Weight*30;
+    meal="vegetable maqluba or mujaddara";
+}
+
+
+else if ( selectedDiet=="High protein"){
+    protine=Weight*2;
+calories=Weight*25;
+meal="Grilled kabab with yogurt salad";
+
+}
+
+else if ( selectedDiet=="Gluten-Free"){
+    protine=Weight*1.3;
+calories=Weight*28;
+meal="kofta with Tahini ,chicken musakhan with Gluten-Free bread";
+
+}
+
+
+
+else if ( selectedDiet=="Low-carb"){
+    protine=Weight*1.2;
+calories=Weight*27;
+meal="mujaddara with bulgur";
+
+}
+
+document.getElementById("textarea").value= "Hello " + name + "\n"
++" you have selected the : " + selectedDiet +"  diet" +"\n"
+ +" your wight is :"+Weight+ " kg." +"\n" 
+ +"your daily proteine intake for the " +selectedDiet+" diet is:"+protine.toFixed(1) +"\n"
+ +" calories per day are :"+calories+ "\n"
+ +"suggested palestinian meal:"+ meal ;
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
